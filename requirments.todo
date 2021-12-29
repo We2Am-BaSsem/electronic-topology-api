@@ -1,0 +1,24 @@
+Non-Functional Requirements:
+    ✔ Implementation must be done in an object-oriented manner (encapsulation, inheritance, polymorphism). @done (12/29/2021, 2:52:56 PM)
+    ✔ Choose a suitable programming language (other than Python) and justify your choice.(Java) @done (12/29/2021, 2:54:05 PM)
+    ☐  Use managed pointers (depends on programming language).
+    ✔ Using a managed build tool is a bonus (Gradle, Maven, ..). (Maven)@done (12/29/2021, 2:54:24 PM)
+    ☐  Documentation on API level is a must.
+    ☐  Documentation on class level is a bonus.
+    ☐  Automatic testing on API level is a must.
+    ☐  Automatic testing on class level is a bonus.
+    ☐  Check your code with a code analysis tool of your choice.
+    ✔ Implement the requirements exactly, more is as bad as less. @done (12/29/2021, 2:54:49 PM)
+    ☐  Use version control to publish your code.
+    ☐  Make any other design choices as you see fit to the requirements and write them in your solution.
+
+Functional Requirements:
+     ✔ Read a topology from a given JSON file and store it in the memory. @done (12/29/2021, 2:53:04 PM)
+     ✔ Write a given topology from the memory to a JSON file. @done (12/29/2021, 5:04:48 PM)
+     ✔ Query about which topologies are currently in the memory. @done (12/29/2021, 2:53:06 PM)
+     ✔ Delete a given topology from memory. @done (12/29/2021, 2:53:22 PM)
+     ✔ Query about which devices are in a given topology. @done (12/29/2021, 2:53:25 PM)
+     ✔ Query about which devices are connected to a given netlist node in a given topology. @done (12/29/2021, 2:53:25 PM)
+
+Improvements:
+    ✔ Replace Imblementation with Hashmap instead of ArrayList(faster in quering) @done (12/29/2021, 5:04:52 PM)

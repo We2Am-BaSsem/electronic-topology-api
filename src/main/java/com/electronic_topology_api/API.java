@@ -9,6 +9,7 @@ import com.electronic_topology_api.components.Component;
 import com.electronic_topology_api.components.NMOS;
 import com.electronic_topology_api.components.Resistor;
 import com.electronic_topology_api.components.Topology;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -19,10 +20,11 @@ public class API {
     // private JSONParser jsonParser = new JSONParser();
     // private ArrayList<JSONObject> Topologies = new ArrayList<JSONObject>();
     // private JSONArray Topologies = new JSONArray();
-
+    // private static ArrayList<Topology> topologyList = new ArrayList<Topology>();
+    private static HashMap<String, Topology> topologyList = new HashMap<String, Topology>();
     private static ObjectMapper objectMapper = getDefaultObjectMapper();
 
-    API() {
+    public API() {
 
     }
 
@@ -36,27 +38,32 @@ public class API {
         return objectMapper.readTree(json);
     }
 
-    public static Topology ReadTopology(String fileName) throws IOException {
+    public static int ReadTopology(String fileName) throws IOException {
         Path filePath = Paths.get(Paths.get(System.getProperty("user.dir")).toString(), "data", fileName);
         // String data = Files.readString(filePath);
         String data = new String(Files.readAllBytes(filePath));
 
         JsonNode obj = parse(data);
+        String id = obj.get("id").toString().replaceAll("\"", "");
+        if (topologyList.containsKey(id))
+            return 0;
         Iterator<JsonNode> iterable = obj.get("components").iterator();
         ArrayList<Component> components = new ArrayList<Component>();
         while (iterable.hasNext()) {
             JsonNode component = (JsonNode) iterable.next();
+            Map<String, Object> propertiesList = new HashMap<>();
+            ArrayList<String> netList = new ArrayList<String>();
             if (component.get("type").asText().compareTo("resistor") == 0) {
                 JsonNode properties = (JsonNode) component.get("resistance");
                 JsonNode nets = (JsonNode) component.get("netlist");
 
-                ArrayList<String> propertiesList = new ArrayList<String>();
-                for (JsonNode property : properties) {
-                    propertiesList.add(property.toString());
-                }
-                ArrayList<String> netList = new ArrayList<String>();
+                propertiesList.put("resistance", properties);
+
+                // for (JsonNode property : properties) {
+                // propertiesList.add(property.toString());
+                // }
                 for (JsonNode net : nets) {
-                    netList.add(net.toString());
+                    netList.add(net.toString().replaceAll("\"", ""));
                 }
                 Resistor resistor = new Resistor(component.get("id").asText(), component.get("type").asText(),
                         propertiesList, netList);
@@ -65,13 +72,12 @@ public class API {
                 JsonNode properties = (JsonNode) component.get("m(l)");
                 JsonNode nets = (JsonNode) component.get("netlist");
 
-                ArrayList<String> propertiesList = new ArrayList<String>();
-                for (JsonNode property : properties) {
-                    propertiesList.add(property.toString());
-                }
-                ArrayList<String> netList = new ArrayList<String>();
+                propertiesList.put("m(l)", properties);
+                // for (JsonNode property : properties) {
+                // propertiesList.add(property.toString());
+                // }
                 for (JsonNode net : nets) {
-                    netList.add(net.toString());
+                    netList.add(net.toString().replaceAll("\"", ""));
                 }
 
                 NMOS nmos = new NMOS(component.get("id").asText(), component.get("type").asText(),
@@ -79,8 +85,112 @@ public class API {
                 components.add(nmos);
             }
         }
+        // topologyList.add(new Topology(obj.get("id").asText(), components));
+        topologyList.put(id, new Topology(id, components));
+        return 1;
+    }
 
-        return new Topology(obj.get("id").asText(), components);
+    public static int WriteTopology(String ID) throws IOException {
+        if (topologyList.containsKey(ID)) {
+            Topology topology = topologyList.get(ID);
+            Map<String, Object> map = new HashMap<>();
+            ArrayList<Object> components = new ArrayList<>();
 
+            map.put("id", topology.GetID());
+            for (Component component : topology.getComponents()) {
+                Map<String, Object> componentMap = new HashMap<>();
+                if (component.gettype().compareTo("resistor") == 0) {
+                    componentMap.put("type", component.gettype());
+                    componentMap.put("id", component.getID());
+                    componentMap.put("resistance", component.getproperties().get("resistance"));
+                    componentMap.put("netlist", (Object) component.getnetList());
+                } else if (component.gettype().compareTo("nmos") == 0) {
+                    componentMap.put("type", component.gettype());
+                    componentMap.put("id", component.getID());
+                    componentMap.put("m(l)", component.getproperties().get("m(l)"));
+                    componentMap.put("netlist", (Object) component.getnetList());
+                }
+                components.add(componentMap);
+            }
+            map.put("components", components);
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            Path filePath = Paths.get(Paths.get(System.getProperty("user.dir")).toString(), "out",
+                    topology.GetID() + ".json");
+            mapper.writeValue(filePath.toFile(), map);
+            return 1;
+        }
+        return 0;
+
+    }
+
+    public static Topology GetTopologyByID(String ID) {
+        if (topologyList.containsKey(ID))
+            return topologyList.get(ID);
+        else
+            return null;
+        // for (Topology topology : topologyList) {
+        // if (topology.GetID().compareTo(ID) == 0)
+        // return topology;
+        // }
+        // return null;
+    }
+
+    public static Collection<Topology> GetAllTopology() {
+        // ArrayList<Topology> result = new ArrayList<Topology>();
+        // for (Topology topology : topologyList.values()) {
+
+        // }
+        return topologyList.values();
+    }
+
+    public static int DeleteTopologyByID(String ID) {
+        if (topologyList.containsKey(ID)) {
+            topologyList.remove(ID);
+            return 1;
+        } else
+            return 0;
+        // for (Topology topology : topologyList) {
+        // if (topology.GetID().compareTo(ID) == 0) {
+        // topologyList.remove(topology);
+        // return 1;
+        // }
+        // }
+        // return 0;
+    }
+
+    public static ArrayList<Component> GetDevices(String ID) {
+        if (topologyList.containsKey(ID))
+            return topologyList.get(ID).getComponents();
+        else
+            return null;
+        // for (Topology topology : topologyList) {
+        // if (topology.GetID().compareTo(ID) == 0) {
+        // return topology.getComponents();
+        // }
+        // }
+        // return null;
+    }
+
+    public static ArrayList<Component> GetTopologyByConnectedNodes(String topologyID, String nodeID) {
+        ArrayList<Component> result = new ArrayList<Component>();
+        if (topologyList.containsKey(topologyID))
+            for (Component component : topologyList.get(topologyID).getComponents()) {
+                if (component.getnetList().contains(nodeID))
+                    result.add(component);
+            }
+
+        // for (Topology topology : topologyList) {
+        // if (topology.GetID().compareTo(topologyID) == 0)
+        // for (Component component : topology.getComponents()) {
+        // for (String node : component.getnetList()) {
+        // if (node.replaceAll("\"", "").compareTo(nodeID) == 0) {
+        // result.add(component);
+        // }
+        // }
+        // }
+        // }
+        return result.size() == 0 ? null : result;
     }
 }

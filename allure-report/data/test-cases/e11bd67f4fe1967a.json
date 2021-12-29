@@ -1,0 +1,58 @@
+{
+  "uid" : "e11bd67f4fe1967a",
+  "name" : "Read Another Topology And Add It To The Memory",
+  "fullName" : "com.electronic_topology_api.AppTest.c_add_another_topology",
+  "historyId" : "431e492526c9b4974725b685b4e5b046",
+  "time" : {
+    "start" : 1640790341479,
+    "stop" : 1640790341480,
+    "duration" : 1
+  },
+  "description" : "Read \"topology.json\" And Assure That Memeory Size Is Increased By One",
+  "descriptionHtml" : "<p>Read &quot;topology.json&quot; And Assure That Memeory Size Is Increased By One</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "com.electronic_topology_api"
+  }, {
+    "name" : "testClass",
+    "value" : "com.electronic_topology_api.AppTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "c_add_another_topology"
+  }, {
+    "name" : "suite",
+    "value" : "com.electronic_topology_api.AppTest"
+  }, {
+    "name" : "host",
+    "value" : "weaam-G3-3579"
+  }, {
+    "name" : "thread",
+    "value" : "4802@weaam-G3-3579.main(1)"
+  }, {
+    "name" : "framework",
+    "value" : "junit4"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "e11bd67f4fe1967a.json",
+  "parameterValues" : [ ]
+}

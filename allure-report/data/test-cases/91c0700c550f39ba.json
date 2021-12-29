@@ -1,0 +1,58 @@
+{
+  "uid" : "91c0700c550f39ba",
+  "name" : "Read A Topology From Json",
+  "fullName" : "com.electronic_topology_api.AppTest.a_read_topology",
+  "historyId" : "1f2085fd7dac98fcc02779eda3527fc8",
+  "time" : {
+    "start" : 1640790341339,
+    "stop" : 1640790341400,
+    "duration" : 61
+  },
+  "description" : "Make An Instance From Topology And Assure It's Filled With Data From \"topology.json\"",
+  "descriptionHtml" : "<p>Make An Instance From Topology And Assure It's Filled With Data From &quot;topology.json&quot;</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "com.electronic_topology_api"
+  }, {
+    "name" : "testClass",
+    "value" : "com.electronic_topology_api.AppTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "a_read_topology"
+  }, {
+    "name" : "suite",
+    "value" : "com.electronic_topology_api.AppTest"
+  }, {
+    "name" : "host",
+    "value" : "weaam-G3-3579"
+  }, {
+    "name" : "thread",
+    "value" : "4802@weaam-G3-3579.main(1)"
+  }, {
+    "name" : "framework",
+    "value" : "junit4"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "91c0700c550f39ba.json",
+  "parameterValues" : [ ]
+}

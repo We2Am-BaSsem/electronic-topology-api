@@ -1,0 +1,58 @@
+{
+  "uid" : "42d8bc0dbac3130e",
+  "name" : "Delete A Topology From The Memory",
+  "fullName" : "com.electronic_topology_api.AppTest.b_delete_topology",
+  "historyId" : "4ac5523e7f2e7dce3f40fbdbc7e9ce47",
+  "time" : {
+    "start" : 1640790341484,
+    "stop" : 1640790341485,
+    "duration" : 1
+  },
+  "description" : "Delete An Instance From TopologyList Stored On The API Given Its ID And Assure That Function Return 1 And When Tring To Retrive It Again It Returns null",
+  "descriptionHtml" : "<p>Delete An Instance From TopologyList Stored On The API Given Its ID And Assure That Function Return 1 And When Tring To Retrive It Again It Returns null</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "com.electronic_topology_api"
+  }, {
+    "name" : "testClass",
+    "value" : "com.electronic_topology_api.AppTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "b_delete_topology"
+  }, {
+    "name" : "suite",
+    "value" : "com.electronic_topology_api.AppTest"
+  }, {
+    "name" : "host",
+    "value" : "weaam-G3-3579"
+  }, {
+    "name" : "thread",
+    "value" : "4802@weaam-G3-3579.main(1)"
+  }, {
+    "name" : "framework",
+    "value" : "junit4"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "42d8bc0dbac3130e.json",
+  "parameterValues" : [ ]
+}
