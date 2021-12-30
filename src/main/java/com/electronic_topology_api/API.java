@@ -9,7 +9,6 @@ import com.electronic_topology_api.components.Component;
 import com.electronic_topology_api.components.NMOS;
 import com.electronic_topology_api.components.Resistor;
 import com.electronic_topology_api.components.Topology;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -28,16 +27,32 @@ public class API {
 
     }
 
+    /**
+     * @return ObjectMapper
+     */
     private static ObjectMapper getDefaultObjectMapper() {
         ObjectMapper mapper = new ObjectMapper();
 
         return mapper;
     }
 
+    /**
+     * @param json
+     * @return JsonNode
+     * @throws IOException N/A
+     */
     private static JsonNode parse(String json) throws IOException {
         return objectMapper.readTree(json);
     }
 
+    /**
+     * @param fileName The file name for the targeted json file to read topology
+     *                 from.
+     * @return int indicates if the process is successful.
+     *         0 : if try to read a topology that is already in the memory.
+     *         1 : successful process.
+     * @throws IOException N/A
+     */
     public static int ReadTopology(String fileName) throws IOException {
         Path filePath = Paths.get(Paths.get(System.getProperty("user.dir")).toString(), "data", fileName);
         // String data = Files.readString(filePath);
@@ -90,6 +105,13 @@ public class API {
         return 1;
     }
 
+    /**
+     * @param ID The Topology ID To Write Its Data Into A Json File
+     * @return int indicates if the process is successful.
+     *         0 : If No Topology With The Given ID Exist.
+     *         1 : successful process.
+     * @throws IOException N/A
+     */
     public static int WriteTopology(String ID) throws IOException {
         if (topologyList.containsKey(ID)) {
             Topology topology = topologyList.get(ID);
@@ -125,6 +147,11 @@ public class API {
 
     }
 
+    /**
+     * @param ID The Topology ID To Retrieve
+     * @return Topology Returns The Desired Topology If Exist
+     *         And If Not Returns null
+     */
     public static Topology GetTopologyByID(String ID) {
         if (topologyList.containsKey(ID))
             return topologyList.get(ID);
@@ -137,6 +164,10 @@ public class API {
         // return null;
     }
 
+    /**
+     * @return Collection(Topology) Returns The Whole Set of Topologies Stored In
+     *         The Memory.
+     */
     public static Collection<Topology> GetAllTopology() {
         // ArrayList<Topology> result = new ArrayList<Topology>();
         // for (Topology topology : topologyList.values()) {
@@ -145,6 +176,12 @@ public class API {
         return topologyList.values();
     }
 
+    /**
+     * @param ID The Topology ID To Delete
+     * @return int indicates if the process is successful.
+     *         0 : If No Topology With The Given ID Exist.
+     *         1 : successful process.
+     */
     public static int DeleteTopologyByID(String ID) {
         if (topologyList.containsKey(ID)) {
             topologyList.remove(ID);
@@ -160,6 +197,11 @@ public class API {
         // return 0;
     }
 
+    /**
+     * @param ID The Topology ID To Retrieve its Devices
+     * @return ArrayList(Component) Returns An ArrayList of The Desired Topology's
+     *         Devices
+     */
     public static ArrayList<Component> GetDevices(String ID) {
         if (topologyList.containsKey(ID))
             return topologyList.get(ID).getComponents();
@@ -173,6 +215,12 @@ public class API {
         // return null;
     }
 
+    /**
+     * @param topologyID The Topology ID To Retrieve its Devices
+     * @param nodeID     The Node ID To Get Devices Connected To It
+     * @return ArrayList(Component) Returns An ArrayList of The Desired Topology's
+     *         Devices And Connected With A Specific Node
+     */
     public static ArrayList<Component> GetTopologyByConnectedNodes(String topologyID, String nodeID) {
         ArrayList<Component> result = new ArrayList<Component>();
         if (topologyList.containsKey(topologyID))

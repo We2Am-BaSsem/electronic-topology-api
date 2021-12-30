@@ -2,8 +2,6 @@ package com.electronic_topology_api;
 
 import java.io.IOException;
 
-import com.electronic_topology_api.components.Topology;
-
 public class App {
     public static void main(String[] args) throws IOException {
         API.ReadTopology("topology.json");

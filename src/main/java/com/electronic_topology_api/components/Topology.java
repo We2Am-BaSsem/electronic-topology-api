@@ -11,10 +11,16 @@ public class Topology {
         this.components = _components;
     }
 
+    /**
+     * @return String Returns The Topology ID
+     */
     public String GetID() {
         return this.ID;
     }
 
+    /**
+     * @return ArrayList(Component) Returns The Topology Entire Devices
+     */
     public ArrayList<Component> getComponents() {
         return this.components;
     }

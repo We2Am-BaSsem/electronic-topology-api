@@ -17,24 +17,36 @@ public class NMOS extends Component {
         this.netList = _netList;
     }
 
+    /**
+     * @return String Returns The NMOS ID
+     */
     @Override
     public String getID() {
         // TODO Auto-generated method stub
         return this.ID;
     }
 
+    /**
+     * @return String Returns "nmos" As A Device Type
+     */
     @Override
     public String gettype() {
         // TODO Auto-generated method stub
         return this.type;
     }
 
+    /**
+     * @return Map(String, Object) Returns The NMOS's characteristics
+     */
     @Override
     public Map<String, Object> getproperties() {
         // TODO Auto-generated method stub
         return this.properties;
     }
 
+    /**
+     * @return ArrayList(String) Returns The NMOS's netList
+     */
     @Override
     public ArrayList<String> getnetList() {
         // TODO Auto-generated method stub

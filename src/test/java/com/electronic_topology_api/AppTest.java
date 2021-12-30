@@ -29,11 +29,19 @@ public class AppTest {
         assertEquals("Read Topology with duplicate id", 0, API.ReadTopology("topology.json"));
     }
 
+    
+    /** 
+     * @throws IOException
+     */
     @After
     public void teardown() throws IOException {
         API.GetAllTopology().clear();
     }
 
+    
+    /** 
+     * @throws IOException
+     */
     @Test
     @DisplayName("Read A Topology From Json")
     @Description("Make An Instance From Topology And Assure It's Filled With Data From \"topology.json\"")
@@ -43,6 +51,10 @@ public class AppTest {
         assertNotEquals("Topology is empty", 0, API.GetTopologyByID("top1").getComponents().size());
     }
 
+    
+    /** 
+     * @throws IOException
+     */
     @Test
     @DisplayName("Delete A Topology From The Memory")
     @Description("Delete An Instance From TopologyList Stored On The API Given Its ID And Assure That Function Return 1 And When Tring To Retrive It Again It Returns null")
@@ -52,6 +64,10 @@ public class AppTest {
         assertEquals("Topology is not deleted", 0, API.DeleteTopologyByID("top1"));
     }
 
+    
+    /** 
+     * @throws IOException
+     */
     @Test
     @DisplayName("Read Another Topology And Add It To The Memory")
     @Description("Read \"topology.json\" And Assure That Memeory Size Is Increased By One")

@@ -17,24 +17,36 @@ public class Resistor extends Component {
         this.netList = _netList;
     }
 
+    /**
+     * @return String Returns The Resistor ID
+     */
     @Override
     public String getID() {
         // TODO Auto-generated method stub
         return this.ID;
     }
 
+    /**
+     * @return String Returns "resistor" As A Device Type
+     */
     @Override
     public String gettype() {
         // TODO Auto-generated method stub
         return this.type;
     }
 
+    /**
+     * @return Map(String, Object) Returns The Resistor's characteristics
+     */
     @Override
     public Map<String, Object> getproperties() {
         // TODO Auto-generated method stub
         return this.properties;
     }
 
+    /**
+     * @return ArrayList(String) Returns The Resistor's netList
+     */
     @Override
     public ArrayList<String> getnetList() {
         // TODO Auto-generated method stub

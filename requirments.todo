@@ -3,13 +3,13 @@ Non-Functional Requirements:
     ✔ Choose a suitable programming language (other than Python) and justify your choice.(Java) @done (12/29/2021, 2:54:05 PM)
     ☐  Use managed pointers (depends on programming language).
     ✔ Using a managed build tool is a bonus (Gradle, Maven, ..). (Maven)@done (12/29/2021, 2:54:24 PM)
-    ☐  Documentation on API level is a must.
-    ☐  Documentation on class level is a bonus.
+    ✔ Documentation on API level is a must. @done (12/30/2021, 3:43:53 PM)
+    ✔ Documentation on class level is a bonus. @done (12/30/2021, 3:43:56 PM)
     ☐  Automatic testing on API level is a must.
     ☐  Automatic testing on class level is a bonus.
     ☐  Check your code with a code analysis tool of your choice.
     ✔ Implement the requirements exactly, more is as bad as less. @done (12/29/2021, 2:54:49 PM)
-    ☐  Use version control to publish your code.
+    ✔ Use version control to publish your code. @done (12/30/2021, 2:20:14 PM)
     ☐  Make any other design choices as you see fit to the requirements and write them in your solution.
 
 Functional Requirements:
