@@ -15,25 +15,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.*;
 
 public class API {
-
-    // private JSONParser jsonParser = new JSONParser();
-    // private ArrayList<JSONObject> Topologies = new ArrayList<JSONObject>();
-    // private JSONArray Topologies = new JSONArray();
-    // private static ArrayList<Topology> topologyList = new ArrayList<Topology>();
-    private static HashMap<String, Topology> topologyList = new HashMap<String, Topology>();
+    private static HashMap<String, Topology> topologyList = new HashMap<>();
     private static ObjectMapper objectMapper = getDefaultObjectMapper();
 
     public API() {
-
+      // TODO document why this constructor is empty
     }
 
     /**
      * @return ObjectMapper
      */
     private static ObjectMapper getDefaultObjectMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-
-        return mapper;
+        return new ObjectMapper();
     }
 
     /**
@@ -53,46 +46,40 @@ public class API {
      *         1 : successful process.
      * @throws IOException N/A
      */
-    public static int ReadTopology(String fileName) throws IOException {
+    public static int readTopology(String fileName) throws IOException {
         Path filePath = Paths.get(Paths.get(System.getProperty("user.dir")).toString(), "data", fileName);
-        // String data = Files.readString(filePath);
         String data = new String(Files.readAllBytes(filePath));
 
         JsonNode obj = parse(data);
-        String id = obj.get("id").toString().replaceAll("\"", "");
+        String id = obj.get("id").toString().replace("\"", "");
         if (topologyList.containsKey(id))
             return 0;
         Iterator<JsonNode> iterable = obj.get("components").iterator();
-        ArrayList<Component> components = new ArrayList<Component>();
+        ArrayList<Component> components = new ArrayList<>();
+        String[] types = { "resistance", "netlist" };
         while (iterable.hasNext()) {
-            JsonNode component = (JsonNode) iterable.next();
+            JsonNode component = iterable.next();
             Map<String, Object> propertiesList = new HashMap<>();
-            ArrayList<String> netList = new ArrayList<String>();
+            ArrayList<String> netList = new ArrayList<>();
             if (component.get("type").asText().compareTo("resistor") == 0) {
-                JsonNode properties = (JsonNode) component.get("resistance");
-                JsonNode nets = (JsonNode) component.get("netlist");
+                JsonNode properties = component.get(types[0]);
+                JsonNode nets = component.get(types[1]);
 
                 propertiesList.put("resistance", properties);
 
-                // for (JsonNode property : properties) {
-                // propertiesList.add(property.toString());
-                // }
                 for (JsonNode net : nets) {
-                    netList.add(net.toString().replaceAll("\"", ""));
+                    netList.add(net.toString().replace("\"", ""));
                 }
                 Resistor resistor = new Resistor(component.get("id").asText(), component.get("type").asText(),
                         propertiesList, netList);
                 components.add(resistor);
             } else if (component.get("type").asText().compareTo("nmos") == 0) {
-                JsonNode properties = (JsonNode) component.get("m(l)");
-                JsonNode nets = (JsonNode) component.get("netlist");
+                JsonNode properties = component.get("m(l)");
+                JsonNode nets = component.get("netlist");
 
                 propertiesList.put("m(l)", properties);
-                // for (JsonNode property : properties) {
-                // propertiesList.add(property.toString());
-                // }
                 for (JsonNode net : nets) {
-                    netList.add(net.toString().replaceAll("\"", ""));
+                    netList.add(net.toString().replace("\"", ""));
                 }
 
                 NMOS nmos = new NMOS(component.get("id").asText(), component.get("type").asText(),
@@ -100,7 +87,6 @@ public class API {
                 components.add(nmos);
             }
         }
-        // topologyList.add(new Topology(obj.get("id").asText(), components));
         topologyList.put(id, new Topology(id, components));
         return 1;
     }
@@ -112,7 +98,7 @@ public class API {
      *         1 : successful process.
      * @throws IOException N/A
      */
-    public static int WriteTopology(String ID) throws IOException {
+    public static int writeTopology(String ID) throws IOException {
         if (topologyList.containsKey(ID)) {
             Topology topology = topologyList.get(ID);
             Map<String, Object> map = new HashMap<>();
@@ -125,12 +111,12 @@ public class API {
                     componentMap.put("type", component.gettype());
                     componentMap.put("id", component.getID());
                     componentMap.put("resistance", component.getproperties().get("resistance"));
-                    componentMap.put("netlist", (Object) component.getnetList());
+                    componentMap.put("netlist", component.getnetList());
                 } else if (component.gettype().compareTo("nmos") == 0) {
                     componentMap.put("type", component.gettype());
                     componentMap.put("id", component.getID());
                     componentMap.put("m(l)", component.getproperties().get("m(l)"));
-                    componentMap.put("netlist", (Object) component.getnetList());
+                    componentMap.put("netlist", component.getnetList());
                 }
                 components.add(componentMap);
             }
@@ -152,27 +138,18 @@ public class API {
      * @return Topology Returns The Desired Topology If Exist
      *         And If Not Returns null
      */
-    public static Topology GetTopologyByID(String ID) {
+    public static Topology getTopologyByID(String ID) {
         if (topologyList.containsKey(ID))
             return topologyList.get(ID);
         else
             return null;
-        // for (Topology topology : topologyList) {
-        // if (topology.GetID().compareTo(ID) == 0)
-        // return topology;
-        // }
-        // return null;
     }
 
     /**
      * @return Collection(Topology) Returns The Whole Set of Topologies Stored In
      *         The Memory.
      */
-    public static Collection<Topology> GetAllTopology() {
-        // ArrayList<Topology> result = new ArrayList<Topology>();
-        // for (Topology topology : topologyList.values()) {
-
-        // }
+    public static Collection<Topology> getAllTopology() {
         return topologyList.values();
     }
 
@@ -182,19 +159,12 @@ public class API {
      *         0 : If No Topology With The Given ID Exist.
      *         1 : successful process.
      */
-    public static int DeleteTopologyByID(String ID) {
+    public static int deleteTopologyByID(String ID) {
         if (topologyList.containsKey(ID)) {
             topologyList.remove(ID);
             return 1;
         } else
             return 0;
-        // for (Topology topology : topologyList) {
-        // if (topology.GetID().compareTo(ID) == 0) {
-        // topologyList.remove(topology);
-        // return 1;
-        // }
-        // }
-        // return 0;
     }
 
     /**
@@ -202,17 +172,11 @@ public class API {
      * @return ArrayList(Component) Returns An ArrayList of The Desired Topology's
      *         Devices
      */
-    public static ArrayList<Component> GetDevices(String ID) {
+    public static List<Component> getDevices(String ID) {
         if (topologyList.containsKey(ID))
             return topologyList.get(ID).getComponents();
         else
-            return null;
-        // for (Topology topology : topologyList) {
-        // if (topology.GetID().compareTo(ID) == 0) {
-        // return topology.getComponents();
-        // }
-        // }
-        // return null;
+            return new ArrayList<>();
     }
 
     /**
@@ -221,24 +185,13 @@ public class API {
      * @return ArrayList(Component) Returns An ArrayList of The Desired Topology's
      *         Devices And Connected With A Specific Node
      */
-    public static ArrayList<Component> GetTopologyByConnectedNodes(String topologyID, String nodeID) {
-        ArrayList<Component> result = new ArrayList<Component>();
+    public static List<Component> getTopologyByConnectedNodes(String topologyID, String nodeID) {
+        ArrayList<Component> result = new ArrayList<>();
         if (topologyList.containsKey(topologyID))
             for (Component component : topologyList.get(topologyID).getComponents()) {
                 if (component.getnetList().contains(nodeID))
                     result.add(component);
             }
-
-        // for (Topology topology : topologyList) {
-        // if (topology.GetID().compareTo(topologyID) == 0)
-        // for (Component component : topology.getComponents()) {
-        // for (String node : component.getnetList()) {
-        // if (node.replaceAll("\"", "").compareTo(nodeID) == 0) {
-        // result.add(component);
-        // }
-        // }
-        // }
-        // }
-        return result.size() == 0 ? null : result;
+        return result.isEmpty() ? null : result;
     }
 }

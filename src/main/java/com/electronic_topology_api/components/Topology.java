@@ -1,10 +1,11 @@
 package com.electronic_topology_api.components;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Topology {
     private String ID;
-    private ArrayList<Component> components = new ArrayList<Component>();
+    private ArrayList<Component> components = new ArrayList<>();
 
     public Topology(String _ID, ArrayList<Component> _components) {
         this.ID = _ID;
@@ -21,7 +22,7 @@ public class Topology {
     /**
      * @return ArrayList(Component) Returns The Topology Entire Devices
      */
-    public ArrayList<Component> getComponents() {
+    public List<Component> getComponents() {
         return this.components;
     }
 

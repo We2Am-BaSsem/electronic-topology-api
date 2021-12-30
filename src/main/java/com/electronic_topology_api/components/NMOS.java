@@ -5,8 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NMOS extends Component {
-    private String ID, type;
-    private ArrayList<String> netList = new ArrayList<String>();
+    private String ID;
+    private String type;
+    private ArrayList<String> netList = new ArrayList<>();
     private Map<String, Object> properties = new HashMap<>();
 
     public NMOS(String _ID, String _type, Map<String, Object> _properties, ArrayList<String> _netList) {

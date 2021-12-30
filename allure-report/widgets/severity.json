@@ -1,29 +1,29 @@
 [ {
-  "uid" : "91c0700c550f39ba",
+  "uid" : "801da3087f183e23",
   "name" : "Read A Topology From Json",
   "time" : {
-    "start" : 1640790341339,
-    "stop" : 1640790341400,
-    "duration" : 61
+    "start" : 1640881068524,
+    "stop" : 1640881068581,
+    "duration" : 57
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "42d8bc0dbac3130e",
-  "name" : "Delete A Topology From The Memory",
-  "time" : {
-    "start" : 1640790341484,
-    "stop" : 1640790341485,
-    "duration" : 1
-  },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "e11bd67f4fe1967a",
+  "uid" : "c224e8188f12fc0f",
   "name" : "Read Another Topology And Add It To The Memory",
   "time" : {
-    "start" : 1640790341479,
-    "stop" : 1640790341480,
+    "start" : 1640881068659,
+    "stop" : 1640881068661,
+    "duration" : 2
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "25e9909051576e9",
+  "name" : "Delete A Topology From The Memory",
+  "time" : {
+    "start" : 1640881068664,
+    "stop" : 1640881068665,
     "duration" : 1
   },
   "status" : "passed",

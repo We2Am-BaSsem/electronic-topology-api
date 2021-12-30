@@ -1,15 +1,15 @@
 {
-  "uid" : "42d8bc0dbac3130e",
-  "name" : "Delete A Topology From The Memory",
-  "fullName" : "com.electronic_topology_api.AppTest.b_delete_topology",
-  "historyId" : "4ac5523e7f2e7dce3f40fbdbc7e9ce47",
+  "uid" : "c224e8188f12fc0f",
+  "name" : "Read Another Topology And Add It To The Memory",
+  "fullName" : "com.electronic_topology_api.AppTest.c_add_another_topology",
+  "historyId" : "431e492526c9b4974725b685b4e5b046",
   "time" : {
-    "start" : 1640790341484,
-    "stop" : 1640790341485,
-    "duration" : 1
+    "start" : 1640881068659,
+    "stop" : 1640881068661,
+    "duration" : 2
   },
-  "description" : "Delete An Instance From TopologyList Stored On The API Given Its ID And Assure That Function Return 1 And When Tring To Retrive It Again It Returns null",
-  "descriptionHtml" : "<p>Delete An Instance From TopologyList Stored On The API Given Its ID And Assure That Function Return 1 And When Tring To Retrive It Again It Returns null</p>\n",
+  "description" : "Read \"topology.json\" And Assure That Memeory Size Is Increased By One",
+  "descriptionHtml" : "<p>Read &quot;topology.json&quot; And Assure That Memeory Size Is Increased By One</p>\n",
   "status" : "passed",
   "flaky" : false,
   "newFailed" : false,
@@ -23,7 +23,7 @@
     "value" : "com.electronic_topology_api.AppTest"
   }, {
     "name" : "testMethod",
-    "value" : "b_delete_topology"
+    "value" : "c_add_another_topology"
   }, {
     "name" : "suite",
     "value" : "com.electronic_topology_api.AppTest"
@@ -32,7 +32,7 @@
     "value" : "weaam-G3-3579"
   }, {
     "name" : "thread",
-    "value" : "4802@weaam-G3-3579.main(1)"
+    "value" : "28879@weaam-G3-3579.main(1)"
   }, {
     "name" : "framework",
     "value" : "junit4"
@@ -53,6 +53,6 @@
     "categories" : [ ],
     "tags" : [ ]
   },
-  "source" : "42d8bc0dbac3130e.json",
+  "source" : "c224e8188f12fc0f.json",
   "parameterValues" : [ ]
 }

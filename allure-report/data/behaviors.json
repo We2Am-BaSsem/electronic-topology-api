@@ -2,38 +2,38 @@
   "uid" : "b1a8273437954620fa374b796ffaacdd",
   "children" : [ {
     "name" : "Read A Topology From Json",
-    "uid" : "91c0700c550f39ba",
+    "uid" : "801da3087f183e23",
     "parentUid" : "b1a8273437954620fa374b796ffaacdd",
     "status" : "passed",
     "time" : {
-      "start" : 1640790341339,
-      "stop" : 1640790341400,
-      "duration" : 61
+      "start" : 1640881068524,
+      "stop" : 1640881068581,
+      "duration" : 57
     },
     "flaky" : false,
     "newFailed" : false,
     "parameters" : [ ]
   }, {
     "name" : "Read Another Topology And Add It To The Memory",
-    "uid" : "e11bd67f4fe1967a",
+    "uid" : "c224e8188f12fc0f",
     "parentUid" : "b1a8273437954620fa374b796ffaacdd",
     "status" : "passed",
     "time" : {
-      "start" : 1640790341479,
-      "stop" : 1640790341480,
-      "duration" : 1
+      "start" : 1640881068659,
+      "stop" : 1640881068661,
+      "duration" : 2
     },
     "flaky" : false,
     "newFailed" : false,
     "parameters" : [ ]
   }, {
     "name" : "Delete A Topology From The Memory",
-    "uid" : "42d8bc0dbac3130e",
+    "uid" : "25e9909051576e9",
     "parentUid" : "b1a8273437954620fa374b796ffaacdd",
     "status" : "passed",
     "time" : {
-      "start" : 1640790341484,
-      "stop" : 1640790341485,
+      "start" : 1640881068664,
+      "stop" : 1640881068665,
       "duration" : 1
     },
     "flaky" : false,

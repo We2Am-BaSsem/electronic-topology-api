@@ -1,15 +1,15 @@
 package com.electronic_topology_api.components;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public abstract class Component {
 
-    abstract public String getID();
+    public abstract String getID();
 
-    abstract public String gettype();
+    public abstract String gettype();
 
-    abstract public Map<String, Object> getproperties();
+    public abstract Map<String, Object> getproperties();
 
-    abstract public ArrayList<String> getnetList();
+    public abstract List<String> getnetList();
 }
