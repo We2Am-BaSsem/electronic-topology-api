@@ -7,4 +7,4 @@ mvn javadoc:aggregate-jar
 mvn javadoc:test-javadoc
 mvn javadoc:test-jar
 mvn javadoc:test-aggregate
-mvn javadoc:test-aggregate-jarس
+mvn javadoc:test-aggregate-jar

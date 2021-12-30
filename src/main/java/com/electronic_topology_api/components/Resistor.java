@@ -10,7 +10,6 @@ public class Resistor extends Component {
     private Map<String, Object> properties = new HashMap<>();
 
     public Resistor(String _ID, String _type, Map<String, Object> _properties, ArrayList<String> _netList) {
-        // TODO Auto-generated constructor stub
         this.ID = _ID;
         this.type = _type;
         this.properties = _properties;
@@ -22,7 +21,6 @@ public class Resistor extends Component {
      */
     @Override
     public String getID() {
-        // TODO Auto-generated method stub
         return this.ID;
     }
 
@@ -31,7 +29,6 @@ public class Resistor extends Component {
      */
     @Override
     public String gettype() {
-        // TODO Auto-generated method stub
         return this.type;
     }
 
@@ -40,7 +37,6 @@ public class Resistor extends Component {
      */
     @Override
     public Map<String, Object> getproperties() {
-        // TODO Auto-generated method stub
         return this.properties;
     }
 
@@ -49,7 +45,6 @@ public class Resistor extends Component {
      */
     @Override
     public ArrayList<String> getnetList() {
-        // TODO Auto-generated method stub
         return this.netList;
     }
 
